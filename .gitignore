@@ -1,0 +1,16 @@
+
+*.db
+.vs/csgo-cheat/v16/.suo
+*.db-shm
+*.db-wal
+*.opendb
+*.ipch
+*.obj
+*.recipe
+*.log
+*.tlog
+*.txt
+*.idb
+*.pdb
+*.dll
+*.ilk
