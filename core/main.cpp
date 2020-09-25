@@ -6,7 +6,7 @@ unsigned long WINAPI initialize(void* instance) {
 		Sleep(200);
 
 #ifdef _DEBUG
-	console::initialize("templehook console");
+	console::initialize("templehook");
 #endif
 
 	try {
@@ -16,7 +16,7 @@ unsigned long WINAPI initialize(void* instance) {
 	}
 
 	catch (const std::runtime_error & error) {
-		MessageBoxA(nullptr, error.what(), "templehook error!", MB_OK | MB_ICONERROR);
+		MessageBoxA(nullptr, error.what(), "there was a problem with templehook!", MB_OK | MB_ICONERROR);
 		FreeLibraryAndExitThread(static_cast<HMODULE>(instance), 0);
 	}
 

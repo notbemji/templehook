@@ -48,7 +48,11 @@ bool __stdcall hooks::create_move::hook(float input_sample_frametime, c_usercmd*
 	auto old_forwardmove = cmd->forwardmove;
 	auto old_sidemove = cmd->sidemove;
 
-	misc::movement::bunny_hop(cmd);
+	if (variables::movement::bunnyhop)
+		misc::movement::bunny_hop(cmd);
+
+	if (variables::fun::trashtalk)
+		misc::fun::trashtalk();
 
 	prediction::start(cmd); {
 
@@ -79,13 +83,18 @@ void __stdcall hooks::paint_traverse::hook(unsigned int panel, bool force_repain
 		if (variables::visuals::player_esp)
 			visuals::players::render();
 
+		variables::blink_switch = (int)std::floor((interfaces::globals->cur_time * 0.075f) / interfaces::globals->interval_per_tick) % 2;
+
+		watermark::draw();
+
 		menu::draw();
+		menu::handle();
 
 		break;
 	}
 	case fnv::hash("FocusOverlayPanel"):
 		//interfaces::panel->set_keyboard_input_enabled(panel, variables::menu::opened);
-		//interfaces::panel->set_mouse_input_enabled(panel, variables::menu::opened);
+		interfaces::panel->set_mouse_input_enabled(panel, variables::menu::is_open);
 		break;
 	}
 

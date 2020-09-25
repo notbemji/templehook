@@ -12,4 +12,8 @@ namespace misc {
 	namespace movement {
 		void bunny_hop(c_usercmd* cmd);
 	};
+
+	namespace fun {
+		void trashtalk();
+	};
 }

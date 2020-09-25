@@ -55,3 +55,23 @@ std::uint8_t* utilities::pattern_scan(const char* module_name, const char* signa
 
     throw std::runtime_error(std::string("Wrong signature: ") + signature);
 }
+
+int utilities::get_fps() noexcept {
+    static float frame_rate = 0;
+    frame_rate = 0.9f * frame_rate + (1.f - 0.9f) * interfaces::globals->absolute_frametime;
+    return int(1.f / frame_rate);
+}
+
+std::string utilities::get_timestamp_string() noexcept {
+    auto now = std::time(nullptr);
+    auto dt = std::ctime(&now);
+    return std::string(dt);
+}
+
+bool utilities::cursor_in_box(int cursor[], int box[])
+{
+    return (cursor[0] > box[0] &&
+        cursor[0] < box[0] + box[2] &&
+        cursor[1] > box[1] &&
+        cursor[1] < box[1] + box[3]);
+}

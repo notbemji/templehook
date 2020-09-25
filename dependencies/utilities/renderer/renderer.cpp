@@ -1,17 +1,11 @@
 #include "renderer.hpp"
 
-unsigned long render::fonts::watermark_font;
-unsigned long render::fonts::esp_font_primary;
-unsigned long render::fonts::esp_font_secondary;
+unsigned long render::fonts::primary;
 
 void render::initialize() {
-	render::fonts::watermark_font = interfaces::surface->font_create();
-	render::fonts::esp_font_primary = interfaces::surface->font_create();
-	render::fonts::esp_font_secondary = interfaces::surface->font_create();
+	render::fonts::primary = interfaces::surface->font_create();
 
-	interfaces::surface->set_font_glyph(render::fonts::watermark_font, "Segeo UI", 14, 500, 0, 0, font_flags::fontflag_antialias);
-	interfaces::surface->set_font_glyph(render::fonts::esp_font_primary, "Segeo UI", 14, 500, 0, 0, font_flags::fontflag_outline);
-	interfaces::surface->set_font_glyph(render::fonts::esp_font_secondary, "Segeo UI", 12, 400, 0, 0, font_flags::fontflag_outline);
+	interfaces::surface->set_font_glyph(render::fonts::primary, "Modern Dos 8x8", 8, 400, 0, 0, font_flags::fontflag_none);
 
 	console::log("[setup] render initialized!\n");
 }

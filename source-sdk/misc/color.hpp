@@ -28,8 +28,17 @@ struct color {
 	}
 
 	static color black( const int a = 255 ) { return { 0, 0, 0, a }; }
+	static color gray( const int a = 255 ) { return { 128, 128, 128, a }; }
+	static color maroon( const int a = 255 ) { return { 128, 0, 0, a }; }
+	static color red(const int   a = 255) { return { 255, 0, 0, a }; }
+	static color green(const int a = 255) { return { 0, 128, 0, a }; }
+	static color lime(const int a = 255) { return { 0, 255, 0, a }; }
+	static color navy(const int  a = 255) { return { 0, 0, 170, a }; }
+	static color blue(const int  a = 255) { return { 0, 0, 255, a }; }
+	static color purple(const int  a = 255) { return { 128, 0, 128, a }; }
+	static color fuchsia(const int  a = 255) { return { 255, 0, 255, a }; }
+	static color teal(const int  a = 255) { return { 0, 128, 128, a }; }
+	static color aqua(const int  a = 255) { return { 0, 255, 255, a }; }
+	static color silver( const int a = 255 ) { return { 192, 192, 192, a }; }
 	static color white( const int a = 255 ) { return { 255, 255, 255, a }; }
-	static color red( const int   a = 255 ) { return { 255, 0, 0, a }; }
-	static color green( const int a = 255 ) { return { 0, 255, 0, a }; }
-	static color blue( const int  a = 255 ) { return { 0, 0, 255, a }; }
 };

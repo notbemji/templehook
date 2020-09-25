@@ -4,7 +4,7 @@ RECT get_player_box_dimensions(player_t* player)
 {
 	RECT box;
 	vec3_t bottom, top;
-	math::world_to_screen(player->origin() - vec3_t(0, 0, 7), bottom);
+	math::world_to_screen(player->abs_origin() - vec3_t(0, 0, 7), bottom);
 	math::world_to_screen(player->get_hitbox_position(hitboxes::hitbox_neck) + vec3_t(0, 0, 12), top);
 	int mid = bottom.y - top.y;
 	int width = mid / 4.f;
@@ -20,7 +20,7 @@ void visuals::players::render() {
 	if (!csgo::local_player)
 		return;
 
-	if (variables::visuals::player_esp_dead_only && !csgo::local_player->is_alive())
+	if (variables::visuals::player_esp_dead_only && csgo::local_player->is_alive())
 		return;
 
 	for (uint16_t i = 1; i < interfaces::globals->max_clients; i++) {
@@ -34,10 +34,13 @@ void visuals::players::render() {
 		player_info_t player_info;
 		interfaces::engine->get_player_info(i, &player_info);
 
-		render::draw_outline(box.left, box.bottom, box.right - box.left, box.top - box.bottom, color::white(150));
-		render::draw_outline(box.left - 1, box.bottom - 1, box.right - box.left + 2, box.top - box.bottom + 2, color::black(100));
+		render::draw_outline(box.left, box.bottom, box.right - box.left, box.top - box.bottom, color::white());
+		render::draw_outline(box.left - 1, box.bottom - 1, box.right - box.left + 2, box.top - box.bottom + 2, color::black(175));
+		render::draw_outline(box.left + 1, box.bottom + 1, box.right - box.left - 2, box.top - box.bottom - 2, color::black(175));
 
-		vec2_t text_size = render::get_text_size(render::fonts::esp_font_primary, player_info.name);
-		render::text(box.left + ((box.right - box.left) * 0.5f), box.bottom - text_size.y + 2, render::fonts::esp_font_primary, player_info.name, true, color(245, 245, 245, 180));
+		std::string player_name_text = player_info.name;
+		player_name_text += " \u1665" + std::to_string(player->health());
+		vec2_t text_size = render::get_text_size(render::fonts::primary, player_name_text);
+		render::text(box.left + ((box.right - box.left) * 0.5f), box.bottom - text_size.y - 2, render::fonts::primary, player_name_text, true, color::white());
 	}
 }

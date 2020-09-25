@@ -32,8 +32,6 @@ namespace render {
 	vec2_t get_text_size(unsigned long font, std::string text);
 
 	namespace fonts {
-		extern unsigned long watermark_font;
-		extern unsigned long esp_font_primary;
-		extern unsigned long esp_font_secondary;
+		extern unsigned long primary;
 	}
 }
