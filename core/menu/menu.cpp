@@ -13,6 +13,7 @@ void menu::draw() {
 	static int cp_drag[] = { 0, 0 };
 	static bool cp_dragging = false;
 	int bounds[4] = { dimensions.left, dimensions.top, dimensions.right, dimensions.bottom };
+	static int cur_page = 0;
 
 	if (cp_dragging && !GetAsyncKeyState(VK_LBUTTON))
 		cp_dragging = false;
@@ -67,12 +68,41 @@ void menu::draw() {
 	}
 	render::text(dimensions.left + ((dimensions.right * 0.5f) - 64), dimensions.top + 8, render::fonts::primary, temple_hook_scrolling_title, false, color::white());
 
-	uint16_t y = dimensions.top + 24;
+	uint16_t side_y = dimensions.top + 16;
 
-	controls::checkbox(dimensions.left + 16, &y, &variables::visuals::player_esp, "Player wallhack", color::navy(), color::white());
-	controls::checkbox(dimensions.left + 16, &y, &variables::visuals::player_esp_dead_only, "Player wallhack only while dead", color::navy(), color::white());
-	controls::checkbox(dimensions.left + 16, &y, &variables::movement::bunnyhop, "Automatic jump", color::navy(), color::white());
-	controls::checkbox(dimensions.left + 16, &y, &variables::fun::trashtalk, "Divine Intellect Simulator 2018", color::navy(), color::white());
+	controls::side_button(dimensions.left, &side_y, &cur_page, 0, "HOME", color::navy(), color::white());
+	controls::side_button(dimensions.left, &side_y, &cur_page, 1, "AIMBOT", color::navy(), color::white());
+	controls::side_button(dimensions.left, &side_y, &cur_page, 2, "VISUALS", color::navy(), color::white());
+	controls::side_button(dimensions.left, &side_y, &cur_page, 3, "MISC", color::navy(), color::white());
+	controls::side_button(dimensions.left, &side_y, &cur_page, 4, "INFO", color::navy(), color::white());
+
+	switch (cur_page) {
+		case 0: {
+			static bool aimbot_is_selected = false;
+			controls::page_icon(dimensions.left + 32, dimensions.top + 32, &cur_page, 1, &aimbot_is_selected, "Aimbot", page_icons::none, color::white(), color::navy());
+			static bool visuals_is_selected = false;
+			controls::page_icon(dimensions.left + 132, dimensions.top + 32, &cur_page, 2, &visuals_is_selected, "Visuals", page_icons::none, color::white(), color::navy());
+		} break;
+		case 1: {
+			// aimbot
+		} break;
+		case 2: {
+			uint16_t y = dimensions.top + 24;
+
+			controls::checkbox(dimensions.left + 16, &y, &variables::visuals::player_esp, "Player wallhack", color::navy(), color::white());
+			controls::checkbox(dimensions.left + 16, &y, &variables::visuals::player_esp_dead_only, "Player wallhack only while dead", color::navy(), color::white());
+		} break;
+		case 3: {
+			uint16_t y = dimensions.top + 24;
+
+			controls::checkbox(dimensions.left + 16, &y, &variables::movement::bunnyhop, "Automatic jump", color::navy(), color::white());
+			controls::checkbox(dimensions.left + 16, &y, &variables::fun::trashtalk, "Divine Intellect Simulator 2018", color::navy(), color::white());
+		} break;
+		case 4: {
+			// info
+		} break;
+		default: break;
+	}
 }
 
 void menu::handle() {

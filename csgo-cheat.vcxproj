@@ -94,8 +94,11 @@
     <ClCompile Include="core\features\visuals\players.cpp" />
     <ClCompile Include="core\hooks\hooks.cpp" />
     <ClCompile Include="core\menu\controls\checkbox.cpp" />
+    <ClCompile Include="core\menu\controls\page_icon.cpp" />
+    <ClCompile Include="core\menu\controls\side_button.cpp" />
     <ClCompile Include="core\menu\menu.cpp" />
     <ClCompile Include="core\menu\watermark.cpp" />
+    <ClCompile Include="dependencies\lodepng\lodepng.cpp" />
     <ClCompile Include="dependencies\minhook\buffer.c" />
     <ClCompile Include="dependencies\minhook\hde\hde32.c" />
     <ClCompile Include="dependencies\minhook\hde\hde64.c" />
@@ -120,6 +123,7 @@
     <ClInclude Include="core\menu\menu.hpp" />
     <ClInclude Include="core\menu\variables.hpp" />
     <ClInclude Include="dependencies\interfaces\i_weapon_system.hpp" />
+    <ClInclude Include="dependencies\lodepng\lodepng.hpp" />
     <ClInclude Include="dependencies\minhook\buffer.h" />
     <ClInclude Include="dependencies\minhook\hde\hde32.h" />
     <ClInclude Include="dependencies\minhook\hde\hde64.h" />

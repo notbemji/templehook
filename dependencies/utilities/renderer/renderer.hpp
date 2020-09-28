@@ -17,6 +17,24 @@ enum font_flags {
 	fontflag_bitmap = 0x800,
 };
 
+// TODO: doesnt seem to work correctly
+
+/*
+class texture { 
+private:
+	unsigned char* chr;
+	unsigned int last_t;
+public:
+	int wi, he;
+	void str_to_char(std::string& str, char arr[], size_t arrSize) {
+		strcpy_s(arr, arrSize, str.c_str());
+		return;
+	};
+	void draw(int, int, int, int);
+	texture(std::string);
+};
+*/
+
 namespace render {
 
 	void initialize();

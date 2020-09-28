@@ -1,6 +1,94 @@
 #include "renderer.hpp"
+#include "../../lodepng/lodepng.hpp"
 
 unsigned long render::fonts::primary;
+
+/*
+std::vector <int> get_resolution(std::string file_name) {
+	std::ifstream in(file_name);
+
+	unsigned int width, height;
+
+	in.seekg(16);
+
+	in.read((char*)&width, 4);
+
+	in.read((char*)&height, 4);
+
+	width = ntohl(width);
+
+	height = ntohl(height);
+
+	std::vector <int> kek;
+
+	kek.push_back(width);
+
+	kek.push_back(height);
+
+	return kek;
+
+}
+
+unsigned char* ldImg(const char* filename, int w, int h) {
+	std::vector<unsigned char> image;
+
+	unsigned int width, height;
+
+	width = w;
+
+	height = h;
+
+	unsigned int error = lodepng::decode(image, width, height, filename);
+
+	// Just incase we get errors display them and say something is wrong
+	if (error)
+		std::cout << "decoder error " << error << ": " << lodepng_error_text(error) << std::endl;
+
+	unsigned char* a = new unsigned char[image.size()];
+
+	std::copy(image.begin(), image.end(), a);
+
+	image.clear();
+
+	return a;
+}
+
+texture::texture(std::string name) {
+	std::vector <int> res = get_resolution(name);
+	wi = res[0];
+	he = res[1];
+	char name2[MAX_PATH];
+	str_to_char(name, name2, MAX_PATH);
+	chr = ldImg(name2, wi, he);
+	last_t = 0;
+}
+
+void texture::draw(int x, int y, int x1, int y1) {
+	bool is_valid = false;
+	unsigned int drawing_texture;
+
+	if (last_t = 0 || !interfaces::surface->is_texture_id_valid(last_t)) {
+		drawing_texture = interfaces::surface->create_new_texture_id(true);
+
+		if (drawing_texture)
+			return;
+
+		interfaces::surface->set_texture_rgba(drawing_texture, chr, (unsigned int)wi, (unsigned int)he);
+
+		if (interfaces::surface->is_texture_id_valid(drawing_texture))
+			is_valid = true;
+		last_t = drawing_texture;
+
+	}
+	else
+		drawing_texture = last_t;
+
+	interfaces::surface->set_drawing_color(255, 255, 255, 255);
+	interfaces::surface->set_texture(drawing_texture);
+	interfaces::surface->draw_textured_rect(x, y, x1, y1);
+}
+
+*/
 
 void render::initialize() {
 	render::fonts::primary = interfaces::surface->font_create();

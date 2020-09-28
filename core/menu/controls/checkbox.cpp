@@ -10,7 +10,7 @@ void controls::checkbox(uint16_t x, uint16_t* y, bool* option, std::string text,
 	int bounds[] = { x, *y, checkbox_text_size.x, checkbox_text_size.y };
 	if (utilities::cursor_in_box(mouse_cursor_pos, bounds) && GetAsyncKeyState(VK_LBUTTON) & TRUE)
 		*option = !(*option);
-	render::draw_filled_rect(x, *y, checkbox_text_size.x, checkbox_text_size.y, utilities::cursor_in_box(mouse_cursor_pos, bounds) ? foreground : background);
-	render::text(x, *y, render::fonts::primary, checkbox_text, false, utilities::cursor_in_box(mouse_cursor_pos, bounds) ? background : foreground);
+	render::draw_filled_rect(x, *y, checkbox_text_size.x, checkbox_text_size.y, utilities::cursor_in_box(mouse_cursor_pos, bounds) ? (variables::blink_switch ? foreground : background) : background);
+	render::text(x, *y, render::fonts::primary, checkbox_text, false, utilities::cursor_in_box(mouse_cursor_pos, bounds) ? (variables::blink_switch ? background : foreground) : foreground);
 	*y += checkbox_text_size.y + 5;
 }
