@@ -39,7 +39,7 @@ void visuals::players::render() {
 		render::draw_outline(box.left + 1, box.bottom + 1, box.right - box.left - 2, box.top - box.bottom - 2, color::black(175));
 
 		std::string player_name_text = player_info.name;
-		player_name_text += " \u1665" + std::to_string(player->health());
+		player_name_text += " \u1665" + std::to_string(player->health()); // TODO: fix the heart icon
 		vec2_t text_size = render::get_text_size(render::fonts::primary, player_name_text);
 		render::text(box.left + ((box.right - box.left) * 0.5f), box.bottom - text_size.y - 2, render::fonts::primary, player_name_text, true, color::white());
 	}
